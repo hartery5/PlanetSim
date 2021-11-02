@@ -1,5 +1,6 @@
 class planet {
-  constructor(x, y, vx, vy, radius, mass, color) {
+  constructor(x, y, vx, vy, radius, mass, color, name) {
+    this.name = name
     this.x = x*AU;
     this.y = y*AU;
     this.vx = vx;
