@@ -63,6 +63,7 @@ function setup() {
   scaleslider = createSlider(5,2000,100,5);
   scaleslider.position(10,height-80);
   scaleslider.style('width', '200px');
+  scaleslider.input(refresh);
   
   button = createButton('Switch Reference Frame');
   button.position(width-165, height-20);
@@ -146,6 +147,10 @@ function average(arr){
 }
 
 function changeReference(){
-  background(0);
+  refresh();
   geocentric = !geocentric;
+}
+
+function refresh(){
+  background(0);
 }
