@@ -28,7 +28,7 @@ function setup() {
   createCanvas(500, 500);
   
   // Create a series of "planets":
-  // planet(x-position, y-position, x-velocity, y-velocity, radius, mass, color)
+  // planet(x-position, y-position, x-velocity, y-velocity, radius, mass, color, name)
   //
   // Value        Unit
   // x-position    AU
@@ -37,14 +37,16 @@ function setup() {
   // y-velocity    m/s
   // radius        pixels
   // mass          kg
-  Earth = new planet(0, 1, 29780, 0, 10, 5.97237e24, 'green');
-  Mercury = new planet(0, 0.387098, 47360, 0, 10, 3.3011e23, 'white')
-  Venus = new planet(0, 0.723332, 35020, 0, 10, 4.8675e24, 'orange')
-  Mars = new planet(0, 1.523679, 24007, 0, 10, 6.4171e23,'red')
-  Jupiter = new planet(0, 5.2044, 13070, 0, 14, 1.8982e27, 'orange')
-  Saturn = new planet(0, 9.5826, 9680, 0, 16, 5.6834e26, 'red')
-  Neptune = new planet(0, 30.07, 5430, 0, 18, 1.02413e26, 'blue')
-  Sun = new planet(0,0,0,0,25, 1.98847e30, 'orange');
+  // color         string
+  // name          string
+  Earth = new planet(0, 1, 29780, 0, 10, 5.97237e24, 'green', 'Earth');
+  Mercury = new planet(0, 0.387098, 47360, 0, 10, 3.3011e23, 'white', 'Mercury')
+  Venus = new planet(0, 0.723332, 35020, 0, 10, 4.8675e24, 'khaki', 'Venus')
+  Mars = new planet(0, 1.523679, 24007, 0, 10, 6.4171e23,'red', 'Mars')
+  Jupiter = new planet(0, 5.2044, 13070, 0, 14, 1.8982e27, 'salmon', 'Jupiter')
+  Saturn = new planet(0, 9.5826, 9680, 0, 16, 5.6834e26, 'burlywood', 'Saturn')
+  Neptune = new planet(0, 30.07, 5430, 0, 18, 1.02413e26, 'cornflowerblue', 'Neptune')
+  Sun = new planet(0,0,0,0,25, 1.98847e30, 'orange', 'Sun');
   
   // Store all of the planets in a list
   planets = [Mercury, Venus, Earth, Mars, Jupiter, Saturn, Neptune, Sun];
@@ -91,6 +93,13 @@ function draw() {
   fill(0,0,0);
   rect(0,10,250,60);
   rect(0,height-100, 250, 80);
+  rect(width-80,10,60,140);
+  fill(255)
+  for(let i =0; i<planets.length; i++){
+    fill(planets[i].color)
+    text(planets[i].name,width-80,25+15*i)
+  }
+  
   pop();
   
   // This sets the simulation speed based on the value from our slider
