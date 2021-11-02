@@ -20,6 +20,7 @@ let frameC = [];
 // Create variables which will hold stars and planets
 let planets, stars
 
+let referencebutton;
 let geocentric = true;
 
 function setup() {
@@ -62,6 +63,10 @@ function setup() {
   scaleslider = createSlider(5,2000,100,5);
   scaleslider.position(10,height-80);
   scaleslider.style('width', '200px');
+  
+  button = createButton('Switch Reference Frame');
+  button.position(width-165, height-20);
+  button.mousePressed(changeReference);
 }
 
 function draw() {
@@ -137,4 +142,8 @@ function average(arr){
     sum += arr[i];
   }
   return sum / arr.length;
+}
+
+function changeReference(){
+  geocentric = !geocentric;
 }
