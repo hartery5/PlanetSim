@@ -20,7 +20,7 @@ let frameC = [];
 // Create variables which will hold stars and planets
 let planets, stars
 
-let rplanets
+let geocentric = true;
 
 function setup() {
   // Create a 600 pixel by 600 pixel "Canvas" to draw on.
@@ -65,7 +65,13 @@ function setup() {
 }
 
 function draw() {
-  background(0);
+  background(0,0,0,5);
+  
+  translate(Sun.x*scale/AU+width/2-width/2, Sun.y*scale/AU+height/2-height/2)
+  // Draw some stars!
+  for(let i=0; i<stars.length; i+=1){
+    stars[i].update(stars, deltat, false);
+  }
   
   // This little trick let's us move the sun, but only if our mouse is close to it.
   if ((mouseIsPressed) & (dist(mouseX, mouseY, Sun.x*scale/AU+width/2, Sun.y*scale/AU+height/2)<50)){
@@ -73,20 +79,22 @@ function draw() {
     Sun.y = (mouseY-height/2)*AU/scale;
   }
   
-  // This sets the simulation speed based on the value from our slider
+  // Creates some black boxes to keep text legible
   push();
   fill(0,0,0);
-  rect(0,height-60,150,60);
+  rect(0,10,250,60);
+  rect(0,height-100, 250, 80);
+  pop();
+  
+  // This sets the simulation speed based on the value from our slider
+  push();
   fill(255, 255, 255);
-
   deltat = timeslider.value()
   text(join(['Simulation Speed: 1 frame =',nf(deltat/86400,1,3),'days'],' '), 10, height-45);
   pop();
   
   // This sets the simulation speed based on the value from our slider
   push();
-  fill(0,0,0);
-  rect(0,height-120,150,60);
   fill(255, 255, 255);
   scale = scaleslider.value()
   text(join(['Scale: 1 AU =',nf(scale,1,0),'pixels'],' '),10,height-85);
@@ -98,17 +106,23 @@ function draw() {
   fill(255, 255, 255);
   text(join(["Distance from Earth to Sun =",nf(d,1,4),'AU'],' '), 10, 25);
   text(join(['Current Frame Rate:',nf(average(frameC),1,0),'FPS'],' '),10,40)
+  if (geocentric){
+    text('Reference Frame: Geocentric', 10, 55)
+  }
+  else {
+    text('Reference Frame: Heliocentric', 10, 55)
+  }
   pop();
   
-  // Draw some stars!
-  for(let i=0; i<stars.length; i+=1){
-    stars[i].update(stars, deltat, false);
+  if (geocentric){
+    translate(-Earth.x*scale/AU+width/2-width/2, -Earth.y*scale/AU+height/2-height/2)
   }
-  
   // Draw the planets!
   for(let i=0; i<planets.length; i+=1){
     planets[i].update(planets, deltat, true);
   }
+  
+  translate(Sun.x*scale/AU+width/2-width/2, Sun.y*scale/AU+height/2-height/2)
   
   // Some frame rate business
   frameC.push(frameRate());
