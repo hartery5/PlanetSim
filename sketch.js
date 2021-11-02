@@ -65,12 +65,13 @@ function setup() {
   scaleslider.style('width', '200px');
   
   button = createButton('Switch Reference Frame');
-  button.position(width-165, height-25);
+  button.position(width-165, height-20);
   button.mousePressed(changeReference);
 }
 
 function draw() {
   background(0,0,0,5);
+  
   
   // Draw some stars!
   for(let i=0; i<stars.length; i+=1){
@@ -83,6 +84,7 @@ function draw() {
     Sun.y = (mouseY-height/2)*AU/scale;
   }
   
+  translate(0, 0)
   // Creates some black boxes to keep text legible
   push();
   fill(0,0,0);
