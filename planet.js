@@ -84,3 +84,21 @@ function calculateForceMagnitude(planet1, planet2){
   let F = G*planet1.mass*planet2.mass/pow(r, 2);
   return F
 }
+  
+  
+function average(arr){
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    sum += arr[i];
+  }
+  return sum / arr.length;
+}
+
+function changeReference(){
+  refresh();
+  geocentric = !geocentric;
+}
+
+function refresh(){
+  background(0);
+}
