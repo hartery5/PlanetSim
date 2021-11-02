@@ -21,7 +21,7 @@ let frameC = [];
 let planets, stars
 
 let referencebutton;
-let geocentric = true;
+let geocentric = false;
 
 function setup() {
   // Create a 600 pixel by 600 pixel "Canvas" to draw on.
