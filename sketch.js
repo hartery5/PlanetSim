@@ -39,17 +39,20 @@ function setup() {
   // mass          kg
   // color         string
   // name          string
-  Earth = new planet(0, 1, 29780, 0, 10, 5.97237e24, 'green', 'Earth');
-  Mercury = new planet(0, 0.387098, 47360, 0, 10, 3.3011e23, 'white', 'Mercury')
-  Venus = new planet(0, 0.723332, 35020, 0, 10, 4.8675e24, 'khaki', 'Venus')
-  Mars = new planet(0, 1.523679, 24007, 0, 10, 6.4171e23,'red', 'Mars')
-  Jupiter = new planet(0, 5.2044, 13070, 0, 14, 1.8982e27, 'salmon', 'Jupiter')
-  Saturn = new planet(0, 9.5826, 9680, 0, 16, 5.6834e26, 'burlywood', 'Saturn')
-  Neptune = new planet(0, 30.07, 5430, 0, 18, 1.02413e26, 'cornflowerblue', 'Neptune')
-  Sun = new planet(0,0,0,0,25, 1.98847e30, 'orange', 'Sun');
+  Earth = new planet(0, 1, 29780, 0, 10, 5.97237e24, 'green', 'Earth ♁');
+  Mercury = new planet(0, 0.387098, 47360, 0, 10, 3.3011e23, 'white', 'Mercury ☿')
+  Venus = new planet(0, 0.723332, 35020, 0, 10, 4.8675e24, 'khaki', 'Venus ♀')
+  Mars = new planet(0, 1.523679, 24007, 0, 10, 6.4171e23,'red', 'Mars ♂')
+  Jupiter = new planet(0, 5.2044, 13070, 0, 14, 1.8982e27, 'salmon', 'Jupiter ♃')
+  Saturn = new planet(0, 9.5826, 9680, 0, 16, 5.6834e26, 'burlywood', 'Saturn ♄')
+  Uranus = new planet(0, 19.19126, 6800, 0, 18,8.6810e25, 'lightblue', 'Uranus ♅')
+  Neptune = new planet(0, 30.07, 5430, 0, 18, 1.02413e26, 'cornflowerblue', 'Neptune ♆')
+  Pluto = new planet(0, 39.482, 4743, 0, 10, 1.303e22, 
+                    'lightgrey', 'Pluto ♇')
+  Sun = new planet(0,0,0,0,25, 1.98847e30, 'orange', 'Sun ☉');
   
   // Store all of the planets in a list
-  planets = [Mercury, Venus, Earth, Mars, Jupiter, Saturn, Neptune, Sun];
+  planets = [Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto, Sun];
  
   // Create some random stars
   stars = [];
@@ -68,7 +71,7 @@ function setup() {
   scaleslider.input(refresh);
   
   button = createButton('Switch Reference Frame');
-  button.position(width-165, height-30);
+  button.position(width-165, height-20);
   button.mousePressed(changeReference);
 }
 
@@ -93,7 +96,7 @@ function draw() {
   fill(0,0,0);
   rect(0,10,250,60);
   rect(0,height-100, 250, 80);
-  rect(width-80,10,60,140);
+  rect(width-80,10,60,160);
   fill(255)
   for(let i =0; i<planets.length; i++){
     fill(planets[i].color)
@@ -145,21 +148,4 @@ function draw() {
   if (frameC.length > 180){
     frameC.shift();
   }
-}
-
-function average(arr){
-  let sum = 0;
-  for (let i = 0; i < arr.length; i++) {
-    sum += arr[i];
-  }
-  return sum / arr.length;
-}
-
-function changeReference(){
-  refresh();
-  geocentric = !geocentric;
-}
-
-function refresh(){
-  background(0);
 }
