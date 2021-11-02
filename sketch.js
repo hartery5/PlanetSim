@@ -72,14 +72,13 @@ function setup() {
 function draw() {
   background(0,0,0,5);
   
-  translate(Sun.x*scale/AU+width/2-width/2, Sun.y*scale/AU+height/2-height/2)
   // Draw some stars!
   for(let i=0; i<stars.length; i+=1){
     stars[i].update(stars, deltat, false);
   }
   
   // This little trick let's us move the sun, but only if our mouse is close to it.
-  if ((mouseIsPressed) & (dist(mouseX, mouseY, Sun.x*scale/AU+width/2, Sun.y*scale/AU+height/2)<50)){
+  if ((!geocentric) & (mouseIsPressed) & (dist(mouseX, mouseY, Sun.x*scale/AU+width/2, Sun.y*scale/AU+height/2)<50)){
     Sun.x = (mouseX-width/2)*AU/scale;
     Sun.y = (mouseY-height/2)*AU/scale;
   }
