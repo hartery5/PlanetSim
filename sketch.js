@@ -145,5 +145,6 @@ function average(arr){
 }
 
 function changeReference(){
+  background(0);
   geocentric = !geocentric;
 }
