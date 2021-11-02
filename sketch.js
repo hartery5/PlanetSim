@@ -68,7 +68,7 @@ function setup() {
   scaleslider.input(refresh);
   
   button = createButton('Switch Reference Frame');
-  button.position(width-165, height-20);
+  button.position(width-165, height-30);
   button.mousePressed(changeReference);
 }
 
