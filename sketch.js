@@ -106,9 +106,9 @@ function draw() {
   // Creates some black boxes to keep text legible
   push();
   fill(0,0,0);
-  rect(0,10,250,60);
+  rect(0,10,250,75);
   rect(0,height-100, 250, 80);
-  rect(width-80,10,60,160);
+  rect(width-90,10,80,160);
   fill(255)
   for(let i =0; i<planets.length; i++){
     fill(planets[i].color)
