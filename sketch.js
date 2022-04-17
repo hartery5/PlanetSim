@@ -4,6 +4,8 @@ let nStars = 200;
 // Create slider's for variables
 let timeslider;
 let scaleslider;
+let sel;
+let currentPlanet;
 
 // Gravitational Constant
 let G = 6.67408e-11;
@@ -53,6 +55,7 @@ function setup() {
   
   // Store all of the planets in a list
   planets = [Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto, Sun];
+  
  
   // Create some random stars
   stars = [];
@@ -71,13 +74,22 @@ function setup() {
   scaleslider.input(refresh);
   
   button = createButton('Switch Reference Frame');
-  button.position(width-165, height-20);
+  button.position(width-165, height-30);
   button.mousePressed(changeReference);
+  
+  sel = createSelect();
+  sel.position(10, 60);
+  names = [];
+  for (let i =0; i<planets.length; i++){
+    sel.option(planets[i].name);
+    append(names, planets[i].name);
+  }
+  sel.changed(distselector);
+  currentPlanet = 0;
 }
 
 function draw() {
   background(0,0,0,5);
-  
   
   // Draw some stars!
   for(let i=0; i<stars.length; i+=1){
@@ -120,10 +132,10 @@ function draw() {
   pop();
   
   // Calculate the distance between Earth & Sun
-  let d = dist(Earth.x, Earth.y, Sun.x, Sun.y)/AU;
+  let d = dist(planets[currentPlanet].x, planets[currentPlanet].y, Sun.x, Sun.y)/AU;
   push();
   fill(255, 255, 255);
-  text(join(["Distance from Earth to Sun =",nf(d,1,4),'AU'],' '), 10, 25);
+  text(join(["Distance from " + sel.value() + " to Sun =",nf(d,1,3),'AU'],' '), 10, 25);
   text(join(['Current Frame Rate:',nf(average(frameC),1,0),'FPS'],' '),10,40)
   if (geocentric){
     text('Reference Frame: Geocentric', 10, 55)
@@ -147,5 +159,13 @@ function draw() {
   frameC.push(frameRate());
   if (frameC.length > 180){
     frameC.shift();
+  }
+}
+
+function distselector(){
+  for (let i = 0; i<planets.length; i++){
+    if (sel.value()==planets[i].name){
+      currentPlanet = i;
+    }
   }
 }
