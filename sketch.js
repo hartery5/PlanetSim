@@ -27,7 +27,7 @@ let geocentric = false;
 
 function setup() {
   // Create a 600 pixel by 600 pixel "Canvas" to draw on.
-  createCanvas(500, 500);
+  createCanvas(windowWidth,windowHeight);
   
   // Create a series of "planets":
   // planet(x-position, y-position, x-velocity, y-velocity, radius, mass, color, name)
@@ -74,7 +74,7 @@ function setup() {
   scaleslider.input(refresh);
   
   button = createButton('Switch Reference Frame');
-  button.position(width-165, height-30);
+  button.position(width-165, height-45);
   button.mousePressed(changeReference);
   
   sel = createSelect();
@@ -90,6 +90,10 @@ function setup() {
 
 function draw() {
   background(0,0,0,5);
+  
+  timeslider.position(10,height-40);
+  scaleslider.position(10,height-80);
+  button.position(width-165, height-45);
   
   // Draw some stars!
   for(let i=0; i<stars.length; i+=1){
@@ -168,4 +172,8 @@ function distselector(){
       currentPlanet = i;
     }
   }
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
 }
