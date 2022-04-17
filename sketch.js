@@ -74,7 +74,7 @@ function setup() {
   scaleslider.input(refresh);
   
   button = createButton('Switch Reference Frame');
-  button.position(width-165, height-45);
+  button.position(width-165, height-60);
   button.mousePressed(changeReference);
   
   sel = createSelect();
@@ -93,7 +93,7 @@ function draw() {
   
   timeslider.position(10,height-40);
   scaleslider.position(10,height-80);
-  button.position(width-165, height-45);
+  button.position(width-165, height-60);
   
   // Draw some stars!
   for(let i=0; i<stars.length; i+=1){
